@@ -14,7 +14,7 @@
 Route::resource('entity', 'EntitiesController');
 
 Route::get('/', function () {
-    return view('welcome');
+    return /*view*/('welcome');
 });
 
 Route::get('/about', 'PagesController@about');
