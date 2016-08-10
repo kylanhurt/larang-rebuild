@@ -2,7 +2,7 @@
 angular.module("dataGoMain", ['ngRoute', 'ui.router', 'satellizer'])
         .controller('mainCtrl', MainCtrl)
         .factory('dataGoAPI', dataGoAPI)
-        .constant('apiUrl', 'http://localhost/api/public/')
+        .constant('apiUrl', 'http://localhost/api/')
         .config(function ($routeProvider, $stateProvider, $urlRouterProvider, $authProvider, $httpProvider, $provide, apiUrl) {
             function redirectWhenLoggedOut($q, $injector) {
                 return {
