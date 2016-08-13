@@ -38,7 +38,7 @@ return [
     | your application so that it is used when running Artisan tasks.
     |
     */
-
+    
     'url' => env('APP_URL', 'http://localhost/api'),
 
     /*
@@ -91,7 +91,7 @@ return [
     |
     */
 
-    'key' => env('APP_KEY'),
+    'key' =>'base64:Yi47/1Givg7XeTJXETmTk/NTA3pEG9pwk91GbMEMORI=',
 
     'cipher' => 'AES-256-CBC',
 
@@ -126,6 +126,7 @@ return [
         /*
          * Laravel Framework Service Providers...
          */
+        Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,
         Illuminate\Auth\AuthServiceProvider::class,
         Illuminate\Broadcasting\BroadcastServiceProvider::class,
         Illuminate\Bus\BusServiceProvider::class,
@@ -201,6 +202,8 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        'JWTAuth'   => Tymon\JWTAuth\Facades\JWTAuth::class,
+        'JWTFactory' => Tymon\JWTAuth\Facades\JWTFactory::class
 
     ],
 

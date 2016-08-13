@@ -13,8 +13,8 @@
 
 Route::resource('entity', 'EntitiesController');
 
-Route::get('/', function () {
-    return /*view*/('welcome');
+Route::get('/howdy', function () {
+    return /*view*/('howdy');
 });
 
 Route::get('/about', 'PagesController@about');
