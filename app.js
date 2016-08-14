@@ -30,8 +30,11 @@ angular.module("dataGoMain", ['ngRoute', 'ui.router', 'satellizer'])
                             templateUrl: 'views/home.html'
                         }
                     },
-                    controller: "WelcomeController as wc"
-
+                    controller: "WelcomeController as wc",
+                    data: {
+                        stateName: 'home'
+                    }                 
+                    
                 })
                 .state('submit-new-entity', {
                     url: 'entity/new',
@@ -44,11 +47,15 @@ angular.module("dataGoMain", ['ngRoute', 'ui.router', 'satellizer'])
                 });
         })
         .run(function ($rootScope, $state) {
-            console.log(localStorage);
+            $rootScope.currentState = $state;
+            console.log($rootScope);
+            //$rootScope.stateName =  $state.stateName;            
+
+            //console.log('$rootScope', $rootScope);            
+            //console.log(localStorage);
             if(localStorage.getItem('satellizer_token')) {
                 $rootScope.authenticated = true;
                 console.log('initial load, authenticated = true');
-                $
             }
             $rootScope.$on('$stateChangeStart', function (event, toState) {
                 var user = JSON.parse(localStorage.getItem('user'));
@@ -56,7 +63,7 @@ angular.module("dataGoMain", ['ngRoute', 'ui.router', 'satellizer'])
                     $rootScope.authenticated = true;
                     $rootScope.currentUser = user;
                 }
-            })
+            });
         })
 
 function MainCtrl($scope, $rootScope, $state, $auth ) {

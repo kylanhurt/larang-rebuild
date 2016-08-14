@@ -37,7 +37,7 @@
                 </div>
                 <ul class="nav navbar-nav navbar-right">
                     <li ng-show="authenticated"><a href="#" ng-click="logout()" style="color:white;">Logout</a></li>                  
-                    <form class="navbar-form navbar-right" ng-hide="authenticated">
+                    <form class="navbar-form navbar-right" ng-hide="currentState.current.data.stateName == 'home'">
                         <div class="form-group">
                             <input type="email" class="form-control" id="login-email" ng-model="email">
                         </div>
