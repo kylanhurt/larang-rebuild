@@ -29,4 +29,4 @@ angular.module('dataGoMain')
         };
         return $http(req);
     }    
-});
+    });

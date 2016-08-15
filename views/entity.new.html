@@ -8,17 +8,19 @@
                 <input class="form-control" name="entityName" ng-model="entityName" placeholder="eg. McDonald's" ng-change="searchEntities()" ng-disabled="entitySubmitNameResponse.code === 1">
                 <span class="help-block">{{entitySubmitNameResponse.message}}</span>
             </div>
+        <button ng-if="entitySubmitNameResponse.code !== 1" type="submit" class="btn btn-success" ng-click="submitNewEntity()">Submit New Entity</button>            
+        <button ng-if="entitySubmitNameResponse.code == 1" type="submit" class="btn btn-default" ng-click="skipSubsequent()">Skip this Step</button>
         </div>
         <div class="subsequent-entity-info-submission" ng-show="entitySubmitNameResponse.code === 1">
-            <p>Your entity has success</p>
+            <h2>Additional Info:</h2>
             <div class="form-group">
                 <label for="entityWebsite">Official Website (optional):</label>
-                <input class="form-control" name="entityWebsite" ng-model="entityWebsite" placeholder="www.McDonalds.com" />
+                <input class="form-control" name="entityWebsite" ng-model="entityWebsite" placeholder="ex. www.MyCompany.com" />
                 <span class="help-block" ng-show="entitySubmitError.entityWebsite">{{entitySubmitError.entityWebsite}}</span>
             </div>
             <div class="form-group">
-                <label for="entityYearFounded">Year Founded (optional):</label>
-                <input class="form-control" name="entityYearFounded" ng-model="entityYearFounded" placeholder="1986" />
+                <label for="entityYearFounded">Year Founded (optional):</label><br>
+                <input class="form-control" name="entityYearFounded" ng-model="entityYearFounded"  type="number" max="2016" placeholder="ex. 1956" />
                 <span class="help-block" ng-show="entitySubmitError.entityYearFounded">{{entitySubmitError.entityYearFounded}}</span>
             </div>
             <div class="form-group">
@@ -28,10 +30,10 @@
             </div>
             <div class="form-group">
                 <label for="entityIndustry">Industry (optional):</label>
-                <input class="form-control" name="entityIndustry" ng-model="entityIndustry" placeholder="Information Technology" />
+                <input class="form-control" name="entityIndustry" ng-model="entityIndustry" placeholder="ex. Information Technology" />
                 <span class="help-block" ng-show="entitySubmitError.entityIndustry">{{entitySubmitError.entityIndustry}}</span>
             </div>            
         </div>
-        <button type="submit" class="btn btn-success" ng-click="submitNewEntity()">Submit New Entity</button>
+        <button ng-if="entitySubmitNameResponse.code == 1" type="submit" class="btn btn-primary" ng-click="saveEntityInfo()">Save</button>
     </form>
 </div>
