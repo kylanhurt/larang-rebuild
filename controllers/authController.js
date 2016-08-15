@@ -6,12 +6,26 @@ angular.module('dataGoMain')
     $rootScope.login = login;
     $rootScope.logout = logout;
     $scope.login = login;
+    $scope.homepageEmail = '';
+    $scope.homepagePassword = '';
+    $scope.email = '';
+    $scope.password = '';
     
-    function login()  {
-        var credentials = {
-            email: $scope.email,
-            password: $scope.password
+    function login(email, password)  {
+        console.log('email', email, 'password', password);
+        console.log($scope);
+        if(typeof(email) !== 'undefined') {
+            var credentials = {
+                email: email,
+                password: password
+            }            
+        } else {
+            var credentials = {
+                email: $scope.email,
+                password: $scope.password
+            }
         }
+        console.log('crendentials:', credentials);
 
         $auth.login(credentials).then(function() {
             return $http.get('api/authenticate/user')

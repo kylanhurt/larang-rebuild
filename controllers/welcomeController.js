@@ -7,13 +7,12 @@ angular.module('dataGoMain')
         $scope.registrationError = {"username" : false};
 
         function registerUser() {
-            var data = {email: $scope.loginEmail, password: $scope.loginPassword}
+            console.log('inside registerUser within welcomeController.js')
+            var data = {email: $scope.email, password: $scope.password}
             dataGoAPI.registerNewUser(data)
                 .success(function (response) {
                     if(response.code === 1) {
-                        $scope.email = $scope.loginEmail;
-                        $scope.password = $scope.loginPassword;
-                        $rootScope.login();
+                        $rootScope.login($scope.email,$scope.password);
                     } else if(response.code === 0) {
                         $scope.registrationError.username = response.message;
                     }

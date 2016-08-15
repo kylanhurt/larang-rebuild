@@ -30,7 +30,7 @@ angular.module("dataGoMain", ['ngRoute', 'ui.router', 'satellizer'])
                             templateUrl: 'views/home.html'
                         }
                     },
-                    controller: "WelcomeController as wc",
+                    controller: "WelcomeController",
                     data: {
                         stateName: 'home'
                     }                 
