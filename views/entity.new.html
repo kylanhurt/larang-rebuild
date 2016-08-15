@@ -1,17 +1,37 @@
-<div class="col-lg-6 col-lg-offset-3 main-form" style="clear:both;">
+<div class="col-lg-6 col-lg-offset-3 main-form" style="clear:both;" ng-controller="entitySubmissionController">
     <h2>Entity Submission</h2>
     <p>To start the creation and submission of a new entity, please fill out the form below:</p>
-    <form id="entity-submission-form">
-        <div class="form-group">
-            <label for="entityName">Entity Name:</label>
-            <input class="form-control" name="entityName" ng-model="entityName" placeholder="eg. McDonald's" ng-change="searchEntities()">
-            <span class="help-block" ng-show="entitySubmitError.entityName">{{entitySubmitError.entityName}}</span>
+    <form class="entity-submission-form">
+        <div class="initial-entity-name-submission">
+            <div class="form-group" ng-class="{'has-error' : entitySubmitNameResponse.code === 0 , 'has-success': entitySubmitNameResponse.code === 1}">
+                <label for="entityName">Entity Name:</label>
+                <input class="form-control" name="entityName" ng-model="entityName" placeholder="eg. McDonald's" ng-change="searchEntities()" ng-disabled="entitySubmitNameResponse.code === 1">
+                <span class="help-block">{{entitySubmitNameResponse.message}}</span>
+            </div>
         </div>
-        <div class="form-group">
-            <label for="entityWebsite">Entity's Official Website (optional):</label>
-            <input class="form-control" name="entityWebsite" ng-model="entityWebsite" placeholder="www.McDonalds.com" />
-            <span class="help-block" ng-show="entitySubmitError.entityWebsite">{{entitySubmitError.entityWebsite}}</span>
-        </div>        
+        <div class="subsequent-entity-info-submission" ng-show="entitySubmitNameResponse.code === 1">
+            <p>Your entity has success</p>
+            <div class="form-group">
+                <label for="entityWebsite">Official Website (optional):</label>
+                <input class="form-control" name="entityWebsite" ng-model="entityWebsite" placeholder="www.McDonalds.com" />
+                <span class="help-block" ng-show="entitySubmitError.entityWebsite">{{entitySubmitError.entityWebsite}}</span>
+            </div>
+            <div class="form-group">
+                <label for="entityYearFounded">Year Founded (optional):</label>
+                <input class="form-control" name="entityYearFounded" ng-model="entityYearFounded" placeholder="1986" />
+                <span class="help-block" ng-show="entitySubmitError.entityYearFounded">{{entitySubmitError.entityYearFounded}}</span>
+            </div>
+            <div class="form-group">
+                <label for="entityCountryOrigin">Country of Origin (optional):</label>
+                <input class="form-control" name="entityCountryOrigin" ng-model="entityCountryOrigin" placeholder="United States" />
+                <span class="help-block" ng-show="entitySubmitError.entityCountryOrigin">{{entitySubmitError.entityCountryOrigin}}</span>
+            </div>
+            <div class="form-group">
+                <label for="entityIndustry">Industry (optional):</label>
+                <input class="form-control" name="entityIndustry" ng-model="entityIndustry" placeholder="Information Technology" />
+                <span class="help-block" ng-show="entitySubmitError.entityIndustry">{{entitySubmitError.entityIndustry}}</span>
+            </div>            
+        </div>
         <button type="submit" class="btn btn-success" ng-click="submitNewEntity()">Submit New Entity</button>
     </form>
 </div>

@@ -44,7 +44,17 @@ angular.module("dataGoMain", ['ngRoute', 'ui.router', 'satellizer'])
                         }
                     },
                     controller: 'entitySubmissionController'
-                });
+                })
+                .state('view-entity', {
+                    url: 'entity/view/:entityName',
+                    views: {
+                        'main-cont': {
+                            templateUrl: 'views/entity.view.html'
+                        }
+                    },
+                    controller: 'entityViewController'
+                })                
+            ;
         })
         .run(function ($rootScope, $state) {
             $rootScope.currentState = $state;

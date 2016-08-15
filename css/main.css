@@ -50,3 +50,7 @@ footer { margin-top: 20px;}
 .main-form input {
     width: 50%;
 }
+
+.entity-submission-form .help-block {
+    min-height: 20px;
+}
