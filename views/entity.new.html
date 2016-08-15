@@ -22,8 +22,8 @@
                 <span class="help-block" ng-show="entitySubmitError.entityYearFounded">{{entitySubmitError.entityYearFounded}}</span>
             </div>
             <div class="form-group">
-                <label for="entityCountryOrigin">Country of Origin (optional):</label>
-                <input class="form-control" name="entityCountryOrigin" ng-model="entityCountryOrigin" placeholder="United States" />
+                <label for="entityCountryOrigin">Country of Origin (optional):</label><br>
+                <country-select class="form-control" name="entityCountryOrigin" ng-model="entityCountryOrigin" cs-priorities="US"></country-select>
                 <span class="help-block" ng-show="entitySubmitError.entityCountryOrigin">{{entitySubmitError.entityCountryOrigin}}</span>
             </div>
             <div class="form-group">

@@ -1,5 +1,5 @@
 //currently empLog has no dependencies, it may also define the module that bootstraps the HTML page (ng-app)
-angular.module("dataGoMain", ['ngRoute', 'ui.router', 'satellizer'])
+angular.module("dataGoMain", ['ngRoute', 'ui.router', 'satellizer', 'countrySelect'])
         .controller('mainCtrl', MainCtrl)
         .factory('dataGoAPI', dataGoAPI)
         .constant('apiUrl', 'http://localhost/api/')
