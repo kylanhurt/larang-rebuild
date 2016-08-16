@@ -53,6 +53,7 @@ class entitiesController extends Controller
             $new_entity->website = $entityWebsite;
             $new_entity->save();
             if(count(Entity::where('title',$entityName)->get() === 1)) {
+                $resp['new_id'] = $new_entity->id;
                 $resp['code'] = 1;
                 $resp['message'] = "Enity successfully submitted.";
             }
@@ -102,7 +103,9 @@ class entitiesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $resp['input'] = $request->input();
+        $resp['id'] = $id;
+        return $resp;
     }
 
     /**

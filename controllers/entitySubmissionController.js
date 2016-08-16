@@ -2,7 +2,9 @@ angular.module('dataGoMain')
     .controller('entitySubmissionController',function ($http, dataGoAPI, $scope) {
     var vm = this;
     $scope.submitNewEntity = submitNewEntity;
+    $scope.saveEntityInfo = saveEntityInfo;
     $scope.entitySubmitNameResponse = { };
+    $scope.currentEntityId = false;
     
     function submitNewEntity () {
         console.log('submitNewEntity executing');
@@ -19,6 +21,30 @@ angular.module('dataGoMain')
                 .error (function(response) {
                     console.log(response)
                 })
+    }
+    
+    function saveEntityInfo() {
+        console.log('beginning of saveEntityInfo execution');
+        if(!isFinite($scope.entitySubmitNameResponse.new_id)){
+            return;
+        } else {
+            console.log('new_id is finite');
+            var saveEntityData = false;
+            saveEntityData = {
+                'website': $scope.entityWebsite,
+                'year_founded':$scope.entityYearFounded,
+                'industry': $scope.entityIndustry,
+                'location': $scope.entityCountryOrigin,
+                'new_id': $scope.entitySubmitNameResponse.new_id
+            }
+            dataGoAPI.apiReq('entity/update', 'PUT', saveEntityData)
+                .success(function(resp) {
+                    console.log('saveEntityInfo success, response:', resp);
+                })
+                .error(function(resp){
+                    console.log('saveEntityInfo error, response:', resp)
+                });
+        }
     }
     
     function searchEntities ( wikiApiUrl ) {

@@ -9,27 +9,27 @@
                 <span class="help-block">{{entitySubmitNameResponse.message}}</span>
             </div>
         <button ng-if="entitySubmitNameResponse.code !== 1" type="submit" class="btn btn-success" ng-click="submitNewEntity()">Submit New Entity</button>            
-        <button ng-if="entitySubmitNameResponse.code == 1" type="submit" class="btn btn-default" ng-click="skipSubsequent()">Skip this Step</button>
+        <button ng-if="entitySubmitNameResponse.code == 1" type="submit" class="btn btn-info" ng-click="skipSubsequent()">Skip this Step</button>
         </div>
         <div class="subsequent-entity-info-submission" ng-show="entitySubmitNameResponse.code === 1">
             <h2>Additional Info:</h2>
             <div class="form-group">
-                <label for="entityWebsite">Official Website (optional):</label>
+                <label for="entityWebsite">Official Website:</label>
                 <input class="form-control" name="entityWebsite" ng-model="entityWebsite" placeholder="ex. www.MyCompany.com" />
                 <span class="help-block" ng-show="entitySubmitError.entityWebsite">{{entitySubmitError.entityWebsite}}</span>
             </div>
             <div class="form-group">
-                <label for="entityYearFounded">Year Founded (optional):</label><br>
+                <label for="entityYearFounded">Year Founded:</label><br>
                 <input class="form-control" name="entityYearFounded" ng-model="entityYearFounded"  type="number" max="2016" placeholder="ex. 1956" />
                 <span class="help-block" ng-show="entitySubmitError.entityYearFounded">{{entitySubmitError.entityYearFounded}}</span>
             </div>
             <div class="form-group">
-                <label for="entityCountryOrigin">Country of Origin (optional):</label><br>
+                <label for="entityCountryOrigin">Country of Origin:</label><br>
                 <country-select class="form-control" name="entityCountryOrigin" ng-model="entityCountryOrigin" cs-priorities="US"></country-select>
                 <span class="help-block" ng-show="entitySubmitError.entityCountryOrigin">{{entitySubmitError.entityCountryOrigin}}</span>
             </div>
             <div class="form-group">
-                <label for="entityIndustry">Industry (optional):</label>
+                <label for="entityIndustry">Industry:</label>
                 <input class="form-control" name="entityIndustry" ng-model="entityIndustry" placeholder="ex. Information Technology" />
                 <span class="help-block" ng-show="entitySubmitError.entityIndustry">{{entitySubmitError.entityIndustry}}</span>
             </div>            
