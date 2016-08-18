@@ -103,8 +103,26 @@ class entitiesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $resp['input'] = $request->input();
-        $resp['id'] = $id;
+        //$resp['input'] = $request->input();
+        $foundSaveEntity = Entity::find($request->input('new_id'));
+        $numFound = count($foundSaveEntity);
+        if($numFound === 1) {
+            $foundSaveEntity->website = $request->input('website');
+            $foundSaveEntity->year_founded = $request->input('year_founded');
+            $foundSaveEntity->industry = $request->input('industry');
+            $foundSaveEntity->location = $request->input('location');
+            $foundSaveEntity->save();
+            if($foundSaveEntity){
+                $resp['code'] = 1;
+                $resp['message'] = 'Entity update successful';
+            }
+            else {
+                App::abort(500, 'Entity update error');
+            }
+        } else {
+            $resp['code'] = 0;
+            $resp['message'] = 'Save failed due entity ID issue';
+        }
         return $resp;
     }
 
