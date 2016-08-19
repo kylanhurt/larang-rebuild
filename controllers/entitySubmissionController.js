@@ -1,5 +1,5 @@
 angular.module('dataGoMain')
-    .controller('entitySubmissionController',function ($http, dataGoAPI, $scope) {
+    .controller('entitySubmissionController',function ($http, dataGoAPI, $scope, $state) {
     var vm = this;
     $scope.submitNewEntity = submitNewEntity;
     $scope.saveEntityInfo = saveEntityInfo;
@@ -40,6 +40,7 @@ angular.module('dataGoMain')
             dataGoAPI.apiReq('entity/update', 'PUT', saveEntityData)
                 .success(function(resp) {
                     console.log('saveEntityInfo success, response:', resp);
+                    $state.transitionTo('view-entity');
                 })
                 .error(function(resp){
                     console.log('saveEntityInfo error, response:', resp)
