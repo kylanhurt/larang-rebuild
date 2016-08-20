@@ -41,6 +41,10 @@ class entitiesController extends Controller
     public function create()
     {
         $entityName = $this->request->input('entityName');
+        
+        //create pretty url
+        $pretty_url = entitiesController::prettify_url($this->request->input('entityName'));
+        
         $entityWebsite = $this->request->input('entityWebsite');
         $found = Entity::where('title',$entityName)->get();
         $num = count($found);
@@ -51,10 +55,12 @@ class entitiesController extends Controller
             $new_entity = new Entity;
             $new_entity->title = $entityName;
             $new_entity->website = $entityWebsite;
+            $new_entity->pretty_url = $pretty_url;
             $new_entity->save();
             if(count(Entity::where('title',$entityName)->get() === 1)) {
                 $resp['new_id'] = $new_entity->id;
                 $resp['entity_name'] = $entityName;
+                $resp['pretty_url'] = $pretty_url;
                 $resp['code'] = 1;
                 $resp['message'] = "Enity successfully submitted.";
             }
@@ -136,5 +142,34 @@ class entitiesController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public static function prettify_url($ugly_url) {
+        //only prettifies, assumes entity is rejected for duplicate name
+        $entity_despaced = strtolower(str_replace(" ", '-', $ugly_url));
+        $entity_reduced = preg_replace('/[^a-zA-Z0-9\-\']/', '', $entity_despaced);
+        $entity_dequoted = str_replace("'", '', $entity_reduced);   
+        return $entity_dequoted;
+    }
+    
+    public static function check_pretty_url($pretty_url_candidate) {
+        //not yet implemented because no feature for "are you sure this has not already been submitted?"
+        $entity_despaced = strtolower(str_replace(" ", '-', $pretty_url_candidate));
+        $entity_reduced = preg_replace('/[^a-zA-Z0-9\-\']/', '', $entity_despaced);
+        $entity_dequoted = str_replace("'", '', $entity_reduced);
+        $found_existing_pretty_url = Entity::where( 'pretty_url', '=', $entity_dequoted)->get();
+        $count = count($found_existing_pretty_url);
+        if($count === 0) {
+            return $entity_dequoted;
+        } else {
+            while( $iterator = 2 ) {
+                $entities_found = count(Entity::where('pretty_url', '=', $entity_dequoted . '-' . $iterator)->get());
+                if($entities_found !== 0) {
+                    $iterator++;
+                } else {
+                    return $entity_dequoted . '-' . $iterator;
+                }
+            }
+        }
     }
 }

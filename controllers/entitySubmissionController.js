@@ -1,6 +1,7 @@
 angular.module('dataGoMain')
-    .controller('entitySubmissionController',function ($http, dataGoAPI, $scope, $state) {
+    .controller('entitySubmissionController',function ($http, dataGoAPI, $scope, $state, $location, $route) {
     var vm = this;
+    $scope.pretty_url = false;
     $scope.submitNewEntity = submitNewEntity;
     $scope.saveEntityInfo = saveEntityInfo;
     $scope.entitySubmitNameResponse = { };
@@ -8,11 +9,12 @@ angular.module('dataGoMain')
     
     function submitNewEntity () {
         console.log('submitNewEntity executing');
-        dataGoAPI.apiReq('entity/create?entityName=' + encodeURI($scope.entityName) + '&entityWebsite=' + encodeURI($scope.entityWebsite), 'GET')
+        dataGoAPI.apiReq('entity/create?entityName=' + encodeURI($scope.entityName), 'GET')
          .success(function (response) {
                     if(response.code === 1) {
                         console.log('success');
                         $scope.entitySubmitNameResponse = response;
+                        $scope.pretty_url = response.pretty_url;                        
                     } else if(response.code === 0) {
                         $scope.entitySubmitNameResponse = response;
                         console.log('fail');
@@ -39,8 +41,10 @@ angular.module('dataGoMain')
             }
             dataGoAPI.apiReq('entity/update', 'PUT', saveEntityData)
                 .success(function(resp) {
-                    console.log('saveEntityInfo success, response:', resp);
-                    $state.transitionTo('view-entity');
+                    console.log('saveEntityInfo success, response:', resp, '$scope.pretty_url is', $scope.pretty_url);
+                    $state.transitionTo('view-entity',  {'entityName': $scope.pretty_url});
+                    $location.path('/entity/view/' + $scope.pretty_url);
+                    $route.reload();
                 })
                 .error(function(resp){
                     console.log('saveEntityInfo error, response:', resp)
