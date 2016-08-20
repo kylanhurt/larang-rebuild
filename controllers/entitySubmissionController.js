@@ -1,5 +1,5 @@
 angular.module('dataGoMain')
-    .controller('entitySubmissionController',function ($http, dataGoAPI, $scope, $state, $location, $route) {
+    .controller('entitySubmissionController',function ($http, dataGoAPI, $scope, $state, $location) {
     var vm = this;
     $scope.pretty_url = false;
     $scope.submitNewEntity = submitNewEntity;
@@ -41,10 +41,10 @@ angular.module('dataGoMain')
             }
             dataGoAPI.apiReq('entity/update', 'PUT', saveEntityData)
                 .success(function(resp) {
-                    console.log('saveEntityInfo success, response:', resp, '$scope.pretty_url is', $scope.pretty_url);
-                    $state.transitionTo('view-entity',  {'entityName': $scope.pretty_url});
+                    console.log('saveEntityInfo success, response:', resp)
+                    console.log('within saveEntityInfo and $scope.pretty_url is', $scope.pretty_url);
                     $location.path('/entity/view/' + $scope.pretty_url);
-                    $route.reload();
+                    $state.transitionTo('view-entity',  {'entityName': $scope.pretty_url});                    
                 })
                 .error(function(resp){
                     console.log('saveEntityInfo error, response:', resp)

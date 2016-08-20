@@ -1,9 +1,9 @@
 //currently empLog has no dependencies, it may also define the module that bootstraps the HTML page (ng-app)
-angular.module("dataGoMain", ['ngRoute', 'ui.router', 'satellizer', 'countrySelect'])
+angular.module("dataGoMain", ['ui.router', 'satellizer', 'countrySelect'])
         .controller('mainCtrl', MainCtrl)
         .factory('dataGoAPI', dataGoAPI)
         .constant('apiUrl', 'http://localhost/api/')
-        .config(function ($routeProvider, $stateProvider, $urlRouterProvider, $authProvider, $httpProvider, $provide, apiUrl ) {
+        .config(function ($stateProvider, $urlRouterProvider, $authProvider, $httpProvider, $provide, apiUrl ) {
             function redirectWhenLoggedOut($q, $injector) {
                 return {
                     responseError: function (rejection) {
