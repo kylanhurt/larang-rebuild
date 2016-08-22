@@ -38,7 +38,8 @@ angular.module('dataGoMain')
                 'year_founded':$scope.entityYearFounded,
                 'industry': $scope.entityIndustry,
                 'location': $scope.entityCountryOrigin,
-                'new_id': $scope.entitySubmitNameResponse.new_id
+                'new_id': $scope.entitySubmitNameResponse.new_id,
+                'description': $scope.entitySubmitNameResponse.description
             }
             dataGoAPI.apiReq('entity/update', 'PUT', saveEntityData)
                 .success(function(resp) {

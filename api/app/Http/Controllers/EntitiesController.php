@@ -87,8 +87,17 @@ class entitiesController extends Controller
      */
     public function show(Request $request, $id) //id specifically refers to the name of this function, only input should be entityPrettyUrl
     {
-        $foundEntity = Entity::where('pretty_url','=',$request->input('entityPrettyUrl'));
-        return $request->input();
+        $foundEntity = Entity::where('pretty_url','=',$request->input('entityPrettyUrl'))->get()->first();
+         //remove business info / vulnerable information
+        unset($foundEntity->id);
+        unset($foundEntity->created_by);
+        foreach($foundEntity as $k => $v) {
+            if(!$v || $v === '') {
+                $foundEntity[$k] = 'n/a';
+            }
+        }
+        $foundEntity->code = 1;
+        return $foundEntity;
     }
 
     /**
@@ -119,6 +128,7 @@ class entitiesController extends Controller
             $foundSaveEntity->year_founded = $request->input('year_founded');
             $foundSaveEntity->industry = $request->input('industry');
             $foundSaveEntity->location = $request->input('location');
+            $foundSaveEntity->description = $request->input('description');
             $foundSaveEntity->save();
             if($foundSaveEntity){
                 $resp['code'] = 1;

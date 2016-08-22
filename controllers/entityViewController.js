@@ -4,7 +4,7 @@ angular.module('dataGoMain')
         $scope.getEntityInfo = getEntityInfo;
         
         //start acquiring entity information
-        getEntityInfo($scope.entityPrettyUrl)
+        getEntityInfo($scope.entityPrettyUrl);
         
         //at this point we need to get all of the relevant information about the entity
         function getEntityInfo() {
@@ -12,7 +12,8 @@ angular.module('dataGoMain')
             dataGoAPI.apiReq('entity/show?entityPrettyUrl=' + encodeURI($scope.entityPrettyUrl), 'GET')
              .success(function (response) {
                         if(response.code === 1) {
-                            console.log('success');
+                            console.log('getEntityInfo success and response is: ' , response);
+                            $scope.currentEntity = response;
                    
                         } else if(response.code === 0) {
 

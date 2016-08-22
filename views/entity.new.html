@@ -1,4 +1,4 @@
-<div class="col-lg-6 col-lg-offset-3 main-form" style="clear:both;" ng-controller="entitySubmissionController">
+<div class="col-lg-8 col-lg-offset-2 main-form" style="clear:both;" ng-controller="entitySubmissionController">
     <h2>Entity Submission</h2>
     <p>To start the creation and submission of a new entity, please fill out the form below:</p>
     <form class="entity-submission-form">
@@ -18,6 +18,11 @@
                 <input class="form-control" name="entityWebsite" ng-model="entityWebsite" placeholder="ex. www.MyCompany.com" />
                 <span class="help-block" ng-show="entitySubmitError.entityWebsite">{{entitySubmitError.entityWebsite}}</span>
             </div>
+            <div class="form-group">
+                <label for="entityDescription">A Short Description of the Entity: (max 500 characters)</label>
+                <textarea class="form-control" name="entityDescription" ng-model="entityDescription" placeholder="This organization does ..." ng-maxlength="1000"></textarea>
+                <span class="help-block" ng-show="entitySubmitError.entityDescription">{{entitySubmitError.entityDescription}}</span>
+            </div>            
             <div class="form-group">
                 <label for="entityYearFounded">Year Founded:</label><br>
                 <input class="form-control" name="entityYearFounded" ng-model="entityYearFounded"  type="number" max="2016" placeholder="ex. 1956" />
