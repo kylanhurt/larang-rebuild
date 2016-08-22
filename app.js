@@ -77,7 +77,7 @@ angular.module("dataGoMain", ['ui.router', 'satellizer', 'countrySelect'])
         })
 
 function MainCtrl($scope, $rootScope, $state, $auth ) {
-
+    console.log('MainCtrl function');
 }
 
 function dataGoAPI($http, apiUrl) {

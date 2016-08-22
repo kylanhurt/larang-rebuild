@@ -85,9 +85,10 @@ class entitiesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request, $id) //id specifically refers to the name of this function, only input should be entityPrettyUrl
     {
-        //
+        $foundEntity = Entity::where('pretty_url','=',$request->input('entityPrettyUrl'));
+        return $request->input();
     }
 
     /**

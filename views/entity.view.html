@@ -1,9 +1,14 @@
-<div class="col-lg-6 col-lg-offset-3 entity-profile" style="clear:both;">
-    <h1 class="enity-profile-name">{{entityName}}</h1>
+<div class="col-lg-6 col-lg-offset-3 entity-profile" style="clear:both;" ng-controller="entityViewController">
+    <h1 class="enity-profile-name">{{currentEntity.title}}</h1>
     <div class="entity-profile-description">
-        
+        [To be included later]
     </div>
     <div class="entity-profile-summary">
-        
+        <h1 class="entity-profile-summary-header">{{currentEntity.title}}</h1>
+        <span class="entity-profile-summary-"></span><span><{{currentEntity.website}}</span>
+        <span class="entity-profile-summary-"></span><span><{{currentEntity.year_founded}}</span>
+        <span class="entity-profile-summary-"></span><span><{{currentEntity.industry}}</span>
+        <span class="entity-profile-summary-"></span><span><{{currentEntity.location}}</span>
+        <span class="entity-profile-summary-"></span><span><{{currentEntity.created_at}}</span>
     </div>
 </div>
