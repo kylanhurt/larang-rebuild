@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Entity;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use DB;
 
 class entitiesController extends Controller
 {
@@ -30,7 +31,12 @@ class entitiesController extends Controller
      */
     public function index()
     {
-        //
+        $request_data = $this->request->input();
+        $request_data['criteria'] = $this->request->input('criteria');
+        $request_data['order'] = $this->request->input('order');
+        $request_data['count'] = $this->request->input('count');
+        $found = DB::table('entities')->orderBy( $request_data['criteria'], $request_data['order'])->take($request_data['count'])->get();
+        return $found;
     }
 
     /**
@@ -91,6 +97,7 @@ class entitiesController extends Controller
          //remove business info / vulnerable information
         unset($foundEntity->id);
         unset($foundEntity->created_by);
+        $foundEntity->message = '';
         foreach($foundEntity as $k => $v) {
             if(!$v || $v === '') {
                 $foundEntity[$k] = 'n/a';

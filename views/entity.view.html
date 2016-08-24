@@ -1,14 +1,16 @@
 <div class="col-lg-8 col-lg-offset-2 entity-profile row" style="clear:both;" ng-controller="entityViewController">
-    <h1 class="enity-profile-name">{{currentEntity.title}}</h1>
-    <div class="entity-profile-description col-lg-8" style="float:left;">
-        {{currentEntity.description}}
+    <div class="entity-profile-detailed col-lg-8">
+        <h1 class="enity-profile-name">{{currentEntity.title}}</h1>
+        <div class="entity-profile-description" style="float:left;">
+            <p>{{currentEntity.description}}</p>
+        </div>
     </div>
-    <div class="entity-profile-summary cold-lg-4"  style="float:left;">
+    <div class="entity-profile-summary col-lg-4"  style="float:left;">
         <h2 class="entity-profile-summary-header">{{currentEntity.title}}</h2>
-        <span class="entity-profile-summary-">Website: </span><span>{{currentEntity.website}}</span>
-        <span class="entity-profile-summary-">Founded: </span><span>{{currentEntity.year_founded}}</span>
-        <span class="entity-profile-summary-">Industry: </span><span>{{currentEntity.industry}}</span>
-        <span class="entity-profile-summary-">Region: </span><span>{{currentEntity.location}}</span>
-        <span class="entity-profile-summary-">Founded: </span><span>{{currentEntity.created_at}}</span>
+        <span class="entity-profile-summary-label">Website: </span><span><a href="{{currentEntity.website}}" target="_blank">{{currentEntity.website}}</a></span><br>
+        <span class="entity-profile-summary-label">Founded: </span><span>{{currentEntity.year_founded}}</span><br>
+        <span class="entity-profile-summary-label">Industry: </span><span>{{currentEntity.industry}}</span><br>
+        <span class="entity-profile-summary-label">Region: </span><span>{{currentEntity.location}}</span><br>
+        <span class="entity-profile-summary-label">Founded: </span><span>{{currentEntity.created_at}}</span>
     </div>
 </div>

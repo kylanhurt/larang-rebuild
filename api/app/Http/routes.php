@@ -11,6 +11,7 @@
 |
 */
 
+Route::get('/entity/list', 'EntitiesController@list');
 Route::resource('entity', 'EntitiesController');
 
 Route::get('/howdy', function () {

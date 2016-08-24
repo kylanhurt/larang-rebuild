@@ -51,4 +51,11 @@ footer {
 .entity-submission-form .help-block {
   min-height: 20px;
 }
+.entity-profile-summary-header {
+  font-size: 22px;
+  font-size: 2.2rem;
+}
+.entity-profile-summary-label {
+  font-weight: bold;
+}
 /*# sourceMappingURL=main.css.map */

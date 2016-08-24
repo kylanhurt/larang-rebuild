@@ -56,7 +56,7 @@ angular.module("dataGoMain", ['ui.router', 'satellizer', 'countrySelect'])
                 })                
             ;
         })
-        .run(function ($rootScope, $state) {
+        .run(function ($rootScope, $state ) {
             $rootScope.currentState = $state;
             console.log($rootScope);
             //$rootScope.stateName =  $state.stateName;            
@@ -74,10 +74,32 @@ angular.module("dataGoMain", ['ui.router', 'satellizer', 'countrySelect'])
                     $rootScope.currentUser = user;
                 }
             });
+            
         })
 
-function MainCtrl($scope, $rootScope, $state, $auth ) {
+function MainCtrl($scope, $rootScope, $state, $auth, dataGoAPI ) {
     console.log('MainCtrl function');
+    
+    getEntityIndex('created_at', 10, 'desc');
+    
+    //define function for getting latest / best / top rated / popular entities
+    function getEntityIndex(criteria, count, order) {
+        $scope.currentIndexes = {};
+        dataGoAPI.apiReq('entity?criteria=' + encodeURI(criteria) + '&count=' + count + '&order=' + order, 'GET')
+         .success(function (response) {
+                    if(response.code === 1) {
+                        console.log('getEntityindex success and response is: ' , response);
+                        $scope.currentIndex = response;
+
+                    } else if(response.code === 0) {
+
+                        console.log('getEntityIndex fail');
+                    }
+                })
+                .error (function(response) {
+                    console.log(response)
+                })            
+    }    
 }
 
 function dataGoAPI($http, apiUrl) {
