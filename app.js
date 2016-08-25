@@ -1,9 +1,9 @@
 //currently empLog has no dependencies, it may also define the module that bootstraps the HTML page (ng-app)
-angular.module("dataGoMain", ['ui.router', 'satellizer', 'countrySelect'])
+angular.module("dataGoMain", ['ui.router', 'satellizer', 'countrySelect', 'smart-table', 'iso-3166-country-codes'])
         .controller('mainCtrl', MainCtrl)
         .factory('dataGoAPI', dataGoAPI)
         .constant('apiUrl', 'http://localhost/api/')
-        .config(function ($stateProvider, $urlRouterProvider, $authProvider, $httpProvider, $provide, apiUrl ) {
+        .config(function ($stateProvider, $urlRouterProvider, $authProvider, $httpProvider, $provide, apiUrl) {
             function redirectWhenLoggedOut($q, $injector) {
                 return {
                     responseError: function (rejection) {
@@ -74,12 +74,10 @@ angular.module("dataGoMain", ['ui.router', 'satellizer', 'countrySelect'])
                     $rootScope.currentUser = user;
                 }
             });
-            
         })
 
-function MainCtrl($scope, $rootScope, $state, $auth, dataGoAPI ) {
-    console.log('MainCtrl function');
-    
+function MainCtrl($scope, $rootScope, $state, $auth, dataGoAPI) {
+    console.log('MainCtrl function');   
     getEntityIndex('created_at', 10, 'desc');
     
     //define function for getting latest / best / top rated / popular entities

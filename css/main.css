@@ -51,6 +51,24 @@ footer {
 .entity-submission-form .help-block {
   min-height: 20px;
 }
+.home-index-table-head-location {
+  text-align: center;
+}
+.home-index-table-head-year {
+  text-align: center;
+}
+.home-index-table-body-location {
+  text-align: center;
+}
+.home-index-table-body-year {
+  text-align: center;
+}
+.jumbotron {
+  padding-left: 30px;
+  padding-right: 30px;
+  margin-top: 10px;
+  border-radius: 10px;
+}
 .entity-profile-summary-header {
   font-size: 22px;
   font-size: 2.2rem;
