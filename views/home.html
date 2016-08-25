@@ -24,10 +24,32 @@
                 <li>Participate in discussions regarding organizations and current events.</li>
                 <li>Begin accruing credibility as a user, giving your account more influence.</li>
             </ul>
-    </div>
+    </div>   
 </div>
 <div class="jumbotron col-lg-8 col-lg-offset-2" id="home-logged-in-content" ng-show="authenticated">
     <h1>Welcome to dataGo<span ng-show="$rootScope.currentUser.username">, {{username}}</span>!</h1>
     <p>To submit a new entity to our database, please click the button below...</p>
     <p><a class="btn btn-primary btn-large" ui-sref="submit-new-entity">Submit New Entity</a></p>
 </div>
+    <div class="col-lg-8 col-lg-offset-2">
+        <table st-table="currentIndex" class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Website</th>
+                    <th>Location</th>
+                    <th>Year Founded</th>
+                    <th>Submitted</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="row in currentIndex">
+                    <td><a ui-sref="view-entity({ entityName: '{{row.pretty_url}}' })">{{row.title}}</a></td>
+                    <td><a href="http://{{row.website}}">{{row.website}}</a></td>                        
+                    <td>{{row.location}}</td>
+                    <td>{{row.year_founded}}</td>
+                    <td>{{row.created_at}}</td
+                </tr>
+            </tbody>
+        </table>
+    </div> 

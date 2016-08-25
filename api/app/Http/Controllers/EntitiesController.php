@@ -36,6 +36,8 @@ class entitiesController extends Controller
         $request_data['order'] = $this->request->input('order');
         $request_data['count'] = $this->request->input('count');
         $found = DB::table('entities')->orderBy( $request_data['criteria'], $request_data['order'])->take($request_data['count'])->get();
+        $found['code'] = 1;
+        $found['message'] = 'Success';
         return $found;
     }
 
