@@ -2,6 +2,7 @@ angular.module('dataGoMain')
     .controller('entityViewController',function ($scope, $stateParams, dataGoAPI) {
         $scope.entityPrettyUrl = $stateParams.entityName; 
         $scope.getEntityInfo = getEntityInfo;
+        $scope.onRating = onRating;
         
         //start acquiring entity information
         getEntityInfo($scope.entityPrettyUrl);
@@ -23,6 +24,10 @@ angular.module('dataGoMain')
                     .error (function(response) {
                         console.log(response)
                     })            
+        }
+        
+        function onRating(newRating) {
+            console.log('inside of onRating');
         }
 
     })

@@ -1,16 +1,21 @@
 <div class="col-lg-8 col-lg-offset-2 entity-profile row" style="clear:both;" ng-controller="entityViewController">
     <div class="entity-profile-detailed col-lg-8">
-        <h1 class="enity-profile-name">{{currentEntity.title}}</h1>
+        <h1 class="enity-profile-name">{{currentEntity.title}}</h1><br>
+        <jk-rating-stars max-rating="10" rating="8" on-rating="onRating(rating)" >
+        </jk-rating-stars><br><br>
         <div class="entity-profile-description" style="float:left;">
             <p>{{currentEntity.description}}</p>
         </div>
     </div>
     <div class="entity-profile-summary col-lg-4"  style="float:left;">
         <h2 class="entity-profile-summary-header">{{currentEntity.title}}</h2>
-        <span class="entity-profile-summary-label">Website: </span><span><a href="{{currentEntity.website}}" target="_blank">{{currentEntity.website}}</a></span><br>
-        <span class="entity-profile-summary-label">Founded: </span><span>{{currentEntity.year_founded}}</span><br>
-        <span class="entity-profile-summary-label">Industry: </span><span>{{currentEntity.industry}}</span><br>
-        <span class="entity-profile-summary-label">Region: </span><span>{{currentEntity.location}}</span><br>
-        <span class="entity-profile-summary-label">Founded: </span><span>{{currentEntity.created_at}}</span>
+        <h4 class="profile-summary-description">Description:</h4>
+        <ul class="entity-profile-summary-list">
+            <li class="entity-profile-summary-list-item"><span class="entity-profile-summary-list-item-label">Website: </span><span><a href="{{currentEntity.website}}" target="_blank">{{currentEntity.website}}</a></span></li>
+            <li class="entity-profile-summary-list-item"><span class="entity-profile-summary-list-item-label">Founded: </span><span>{{currentEntity.year_founded}}</span></li>
+            <li class="entity-profile-summary-list-item"><span class="entity-profile-summary-list-item-label">Industry: </span><span>{{currentEntity.industry}}</span></li>
+            <li class="entity-profile-summary-list-item"><span class="entity-profile-summary-list-item-label">Region: </span><span>{{currentEntity.location | isoCountry}}</span></li>
+            <li class="entity-profile-summary-list-item"><span class="entity-profile-summary-list-item-label">Founded: </span><span>{{currentEntity.created_at}}</span></li>
+        </ul>
     </div>
 </div>

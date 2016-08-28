@@ -10,6 +10,9 @@ and open the template in the editor.
 .navbar.navbar-fixed-top {
   margin-bottom: 20px;
 }
+.navbar .container {
+  margin-bottom: 10px;
+}
 footer {
   margin-top: 20px;
 }
@@ -69,11 +72,27 @@ footer {
   margin-top: 10px;
   border-radius: 10px;
 }
-.entity-profile-summary-header {
+.entity-profile {
+  padding-top: 20px;
+}
+.entity-profile-summary {
+  border-left: 1px solid #efefef;
+}
+.entity-profile-summary-list {
+  list-style-type: none;
+  padding-left: 0px;
+}
+.entity-profile-summary-list-item {
+  margin-bottom: 5px;
+}
+.entity-profile-summary-list-item-header {
   font-size: 22px;
   font-size: 2.2rem;
 }
-.entity-profile-summary-label {
+.entity-profile-summary-list-item-label {
   font-weight: bold;
+}
+.entity-profile-detailed {
+  padding-right: 30px;
 }
 /*# sourceMappingURL=main.css.map */

@@ -9,6 +9,7 @@ and open the template in the editor.
 */
 
 .navbar.navbar-fixed-top { margin-bottom: 20px; }
+.navbar .container {margin-bottom: 10px;}
 
 footer { margin-top: 20px;}
 
@@ -116,15 +117,33 @@ footer { margin-top: 20px;}
 
 .entity {
     &-profile {
+        
+        padding-top: 20px;
+        
         &-summary {
-            &-header {
-                font-size: 22px;
-                font-size: 2.2rem;                
-            }
+
+            border-left: 1px solid #efefef;
             
-            &-label {
-                font-weight: bold;
+            &-list{
+                list-style-type: none;
+                padding-left: 0px;
+                
+                &-item {
+                    margin-bottom: 5px;
+                    
+                    &-header {
+                        font-size: 22px;
+                        font-size: 2.2rem;                
+                    }
+
+                    &-label {
+                        font-weight: bold;
+                    }
+                }
             }
+        }
+        &-detailed {
+            padding-right: 30px;
         }
     }
 }
