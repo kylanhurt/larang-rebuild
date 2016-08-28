@@ -73,7 +73,11 @@ public function __construct()
 
             }
 
+            //remove user id from response since it is primary key
+            unset($user->id);
+            
             // the token is valid and we have found the user via the sub claim
+            
             return response()->json(compact('user'));
         }    
     
