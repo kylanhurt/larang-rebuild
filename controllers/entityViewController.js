@@ -30,7 +30,7 @@ angular.module('dataGoMain')
             console.log('inside of onRating and the rating is: ', newRating);
             var data = {
                 'score': newRating,
-                'pretty_url': $scope.pretty_url, //to identify entity id
+                'pretty_url': $scope.currentEntity.pretty_url, //to identify entity id
                 'user_email': $rootScope.currentUser.email //to idenity user id
             }
             dataGoAPI.apiReq('review', 'POST', data)

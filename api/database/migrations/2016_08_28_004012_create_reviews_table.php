@@ -25,6 +25,9 @@ class CreateReviewsTable extends Migration
             //need one column for entity ID
             $table->foreign('entity_id')->references('id')->on('entities');
             
+            //make user-entity-criteria a unique combo
+            $table->unique(array('entity_id','user_id','criteria'));
+            
             $table->timestamps();
         });
     }

@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Reviews extends Model
+class review extends Model
 {
     //
     public function entity () {
