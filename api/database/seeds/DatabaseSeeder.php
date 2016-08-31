@@ -29,11 +29,13 @@ class DatabaseSeeder extends Seeder
 
 class UsersTableSeeder extends Seeder {
     public function run() {
+        DB::table('users')->insert(['email' => 'a@a.a', 'name' => 'a', 'password' => Hash::make('a')]);  
+        
         $faker = Faker::create();
         foreach(range(1,10) as $index) {
             User:: create([
                 'email'=> $faker->email(),
-                'username'=> $faker->word(),
+                'name'=> $faker->word(),
                 'password'=> $faker->password()
             ]);
         }
@@ -53,10 +55,10 @@ class SampleUsersDbSeeder extends Seeder
         DB::table('users')->delete();
 
         $users = array(
-                ['username' => 'RyanChenkie', 'email' => 'ryanchenkie@gmail.com', 'password' => Hash::make('secret')],
-                ['username' => 'ChrisSevilleja', 'email' => 'chris@scotch.io', 'password' => Hash::make('secret')],
-                ['username' => 'HollyLloyd', 'email' => 'holly@scotch.io', 'password' => Hash::make('secret')],
-                ['username' => 'AdnanKukic', 'email' => 'adnan@scotch.io', 'password' => Hash::make('secret')],
+                ['name' => 'RyanChenkie', 'email' => 'ryanchenkie@gmail.com', 'password' => Hash::make('secret')],
+                ['name' => 'ChrisSevilleja', 'email' => 'chris@scotch.io', 'password' => Hash::make('secret')],
+                ['name' => 'HollyLloyd', 'email' => 'holly@scotch.io', 'password' => Hash::make('secret')],
+                ['name' => 'AdnanKukic', 'email' => 'adnan@scotch.io', 'password' => Hash::make('secret')],
         );
             
         // Loop through each user above and create the record for them in the database
