@@ -5,6 +5,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use Faker\Factory as Faker;
 use App\User;
+use App\Criteria;
+use App\Entity;
 
 class DatabaseSeeder extends Seeder
 {
@@ -16,19 +18,27 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         Model::unguard();
-
-
-        //User::truncate();
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+        
+        //delete rows from some tables
+        DB::table('criterion')->truncate();   
+        DB::table('reviews')->truncate();         
+        DB::table('entities')->truncate();        
         DB::table('users')->truncate();
-        //$this->call(UserTableSeeder::class);
-        $this->call('UsersTableSeeder');
 
+        //seed the tables
+        $this->call('UsersTableSeeder');
+        $this->call('CriterionTableSeeder');
+        $this->call('EntitiesTableSeeder');
+        
+        DB::statement('SET FOREIGN_KEY_CHECKS=1;');        
         Model::reguard();
     }
 }
 
 class UsersTableSeeder extends Seeder {
     public function run() {
+        
         DB::table('users')->insert(['email' => 'a@a.a', 'name' => 'a', 'password' => Hash::make('a')]);  
         
         $faker = Faker::create();
@@ -80,5 +90,43 @@ class FakeUsersTableSeeder extends Seeder
     public function run()
     {
         //
+    }
+}
+
+
+class CriterionTableSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run() {
+        
+        //initial non-submitted 'general' criterion
+        Criteria::create(['name' => 'general', 'user_id' => 1]);    
+        
+    }
+}
+
+class EntitiesTableSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
+    {
+        Entity::create([
+            'title' => 'Sample Company', 
+            'pretty_url' => 'sample-company',
+            'description' => 'This is the sample company. The sample company does xyz. This is the sample company. The sample company does xyz. This is the sample company. The sample company does xyz. This is the sample company. The sample company does xyz. This is the sample company. The sample company does xyz. This is the sample company. The sample company does xyz. This is the sample company. The sample company does xyz. This is the sample company. The sample company does xyz. This is the sample company. The sample company does xyz. This is the sample company. The sample company does xyz. This is the sample company. The sample company does xyz. This is the sample company. The sample company does xyz. This is the sample company. The sample company does xyz.',
+            'website' => 'www.samplecompany.com',
+            'year_founded' => '2016',
+            'industry' => 'Sample Industry',
+            'created_by' => 1,
+            'location' => 'UA' //I am not certain if this abbreviation is correct
+        ]); 
     }
 }

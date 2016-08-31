@@ -31,7 +31,8 @@ angular.module('dataGoMain')
             var data = {
                 'score': newRating,
                 'pretty_url': $scope.currentEntity.pretty_url, //to identify entity id
-                'user_email': $rootScope.currentUser.email //to idenity user id
+                'user_email': $rootScope.currentUser.email, //to idenity user id
+                'criteria': 'general'
             }
             dataGoAPI.apiReq('review', 'POST', data)
              .success(function (response) {
