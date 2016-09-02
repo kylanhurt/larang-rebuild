@@ -48,7 +48,7 @@ class ReviewsController extends Controller
         $review->update(['entity_id' => $entity['id'], 'user_id' => $user['id'], 'criteria_id' => $criteria['id']]);
         
         //we still need to double-check to see if a user has already submitted a score
-        $resp['review'] = $review;   
+        //$resp['review'] = $review;   
         $resp['code'] = 1;
         $resp['message'] = 'Review update submitted successfully';        
         

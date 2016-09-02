@@ -9,7 +9,7 @@
                 <span class="help-block">{{entitySubmitNameResponse.message}}</span>
             </div>
         <button ng-if="entitySubmitNameResponse.code !== 1" type="submit" class="btn btn-success" ng-click="submitNewEntity()">Submit New Entity</button>            
-        <button ng-if="entitySubmitNameResponse.code == 1" type="submit" class="btn btn-info" ng-click="skipSubsequent()">Skip this Step</button>
+        <button ng-if="entitySubmitNameResponse.code == 1" type="submit" class="btn btn-info" ui-sref="view-entity({entityName: pretty_url})">Skip this Step</button>
         </div>
         <div class="subsequent-entity-info-submission" ng-show="entitySubmitNameResponse.code === 1">
             <h2>Additional Info:</h2>

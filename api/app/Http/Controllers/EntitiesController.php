@@ -66,7 +66,7 @@ class entitiesController extends Controller
             $new_entity->pretty_url = $pretty_url;
             $new_entity->save();
             if(count(Entity::where('title',$entityName)->get() === 1)) {
-                $resp['new_id'] = $new_entity->id;
+                //$resp['new_id'] = $new_entity->id;
                 $resp['entity_name'] = $entityName;
                 $resp['pretty_url'] = $pretty_url;
                 $resp['code'] = 1;
