@@ -1,8 +1,8 @@
 <div class="col-lg-8 col-lg-offset-2 entity-profile row" style="clear:both;" ng-controller="entityViewController">
     <div class="entity-profile-detailed col-lg-8">
         <h1 class="enity-profile-name">{{currentEntity.title}}</h1><br>
-        <jk-rating-stars max-rating="10" rating="8" on-rating="onRating(rating)" >
-        </jk-rating-stars><br><br>
+        Average: <jk-rating-stars rating="avgEntityRating" read-only="readOnly" ></jk-rating-stars><br>
+        Your Rating: <jk-rating-stars max-rating="10" rating="8" on-rating="onRating(rating)" ></jk-rating-stars><br><br>
         <div class="entity-profile-description" style="float:left;">
             <p>{{currentEntity.description}}</p>
         </div>

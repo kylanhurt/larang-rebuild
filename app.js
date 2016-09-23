@@ -1,5 +1,5 @@
 //currently empLog has no dependencies, it may also define the module that bootstraps the HTML page (ng-app)
-angular.module("dataGoMain", ['ui.router', 'satellizer', 'countrySelect', 'smart-table', 'iso-3166-country-codes','jkAngularRatingStars'])
+angular.module("dataGoMain", ['ui.router', 'ngMessages', 'satellizer', 'countrySelect', 'smart-table', 'iso-3166-country-codes','jkAngularRatingStars'])
         .controller('mainCtrl', MainCtrl)
         .factory('dataGoAPI', dataGoAPI)
         .constant('apiUrl', 'http://localhost/api/')
@@ -87,6 +87,7 @@ function MainCtrl($scope, $rootScope, $state, $auth, dataGoAPI) {
          .success(function (response) {
                     if(response.code === 1) {
                         console.log('getEntityindex success and response is: ' , response);
+			var target = "http://"; //for removal of 'http://' from string
                         $scope.currentIndex = response;
 
                     } else if(response.code === 0) {

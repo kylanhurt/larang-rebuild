@@ -43,6 +43,7 @@ footer {
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0088cc', endColorstr='#ff0044cc', GradientType=0);
   filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
 }
+/* Forms */
 .main-form {
   padding: 20px;
   border-radius: 5px;
@@ -54,6 +55,7 @@ footer {
 .entity-submission-form .help-block {
   min-height: 20px;
 }
+/* End of forms */
 .home-index-table-head-location {
   text-align: center;
 }
@@ -94,5 +96,11 @@ footer {
 }
 .entity-profile-detailed {
   padding-right: 30px;
+}
+.entity-profile .avg-rating .material-icons {
+  font-size: 30px;
+  text-shadow: 0.06em .04em #000000;
+  line-height: 1;
+  color: grey;
 }
 /*# sourceMappingURL=main.css.map */

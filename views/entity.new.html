@@ -1,12 +1,15 @@
 <div class="col-lg-8 col-lg-offset-2 main-form" style="clear:both;" ng-controller="entitySubmissionController">
     <h2>Entity Submission</h2>
     <p>To start the creation and submission of a new entity, please fill out the form below:</p>
-    <form class="entity-submission-form">
+    <form class="entity-submission-form" name="newEntitySubmissionForm">
         <div class="initial-entity-name-submission">
             <div class="form-group" ng-class="{'has-error' : entitySubmitNameResponse.code === 0 , 'has-success': entitySubmitNameResponse.code === 1}">
                 <label for="entityName">Entity Name:</label>
-                <input class="form-control" name="entityName" ng-model="entityName" placeholder="eg. McDonald's" ng-change="searchEntities()" ng-disabled="entitySubmitNameResponse.code === 1">
-                <span class="help-block">{{entitySubmitNameResponse.message}}</span>
+                <input class="form-control" name="entityName" ng-model="entityName" placeholder="eg. McDonald's" ng-change="searchEntities()" ng-disabled="entitySubmitNameResponse.code === 1" required>
+                <div ng-messages="newEntitySubmissionForm.entityName.$error" ng-if="newEntitySubmissionForm.entityName.$dirty">
+                    <span class="help-block">{{entitySubmitNameResponse.message}}</span><br>
+                    <label ng-message="required" class="text-danger">This field is required</label>
+                </div>
             </div>
         <button ng-if="entitySubmitNameResponse.code !== 1" type="submit" class="btn btn-success" ng-click="submitNewEntity()">Submit New Entity</button>            
         <button ng-if="entitySubmitNameResponse.code == 1" type="submit" class="btn btn-info" ui-sref="view-entity({entityName: pretty_url})">Skip this Step</button>

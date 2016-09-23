@@ -3,6 +3,7 @@ angular.module('dataGoMain')
         $scope.entityPrettyUrl = $stateParams.entityName; 
         $scope.getEntityInfo = getEntityInfo;
         $scope.onRating = onRating;
+        $scope.range = range;
         
         //start acquiring entity information
         getEntityInfo($scope.entityPrettyUrl);
@@ -48,6 +49,15 @@ angular.module('dataGoMain')
                         console.log(response)
                     })                 
         }
+        
+        function range (min, max, step) {
+            step = step || 1;
+            var input = [];
+            for (var i = min; i <= max; i += step) {
+                input.push(i);
+            }
+            return input;
+        };        
 
     })
     .run(function() { //I think this gets executed when this script first loads
