@@ -49,14 +49,35 @@ footer { margin-top: 20px;}
     padding: 20px;
     border-radius: 5px;
     background-color: #eee;
+    
+    .subsequent-entity-info-submission    {
+        .form-group {
+            clear: both;
+            display: block;
+            padding-left: 0px;
+        }
+    }
+    
 }
 
-.main-form input {
-    width: 50%;
+.main-form {
+    input, textarea, select {
+        width: 50%; 
+    }
 }
 
-.entity-submission-form .help-block {
-    min-height: 20px;
+.entity-submission-form {
+    .help-block {
+        min-height: 20px;
+    }
+    
+    .form-messages-wrap {
+        min-height: 40px;
+        padding-top: 10px;
+    }
+    .form-group {
+        clear: both;        
+    }
 }
 
 /* End of forms */
