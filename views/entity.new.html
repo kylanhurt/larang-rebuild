@@ -6,42 +6,69 @@
             <div class="form-group" ng-class="{'has-error' : entitySubmitNameResponse.code === 0 , 'has-success': entitySubmitNameResponse.code === 1}">
                 <label for="entityName">Entity Name:</label>
                 <input class="form-control" name="entityName" ng-model="entityName" placeholder="eg. McDonald's" ng-change="searchEntities()" ng-disabled="entitySubmitNameResponse.code === 1" required>
-                <div ng-messages="newEntitySubmissionForm.entityName.$error" ng-if="newEntitySubmissionForm.entityName.$dirty">
-                    <span class="help-block">{{entitySubmitNameResponse.message}}</span><br>
-                    <label ng-message="required" class="text-danger">This field is required</label>
+                <div class="form-messages-wrap">
+                    <div ng-messages="newEntitySubmissionForm.entityName.$error" ng-show="newEntitySubmissionForm.entityName.$dirty">
+                        <!--<span class="help-block">{{entitySubmitNameResponse.message}}</span><br>-->
+                        <label ng-message="required" class="text-danger">This field is required</label>
+                    </div>
                 </div>
             </div>
-        <button ng-if="entitySubmitNameResponse.code !== 1" type="submit" class="btn btn-success" ng-click="submitNewEntity()">Submit New Entity</button>            
+        <button ng-if="entitySubmitNameResponse.code !== 1" type="submit" class="btn btn-success" ng-click="submitNewEntity()" ng-disabled="newEntitySubmissionForm.$invalid">Submit New Entity</button>            
         <button ng-if="entitySubmitNameResponse.code == 1" type="submit" class="btn btn-info" ui-sref="view-entity({entityName: pretty_url})">Skip this Step</button>
         </div>
         <div class="subsequent-entity-info-submission" ng-show="entitySubmitNameResponse.code === 1">
             <h2>Additional Info:</h2>
             <div class="form-group">
                 <label for="entityWebsite">Official Website:</label>
-                <input class="form-control" name="entityWebsite" ng-model="entityWebsite" placeholder="ex. www.MyCompany.com" />
-                <span class="help-block" ng-show="entitySubmitError.entityWebsite">{{entitySubmitError.entityWebsite}}</span>
+                <input class="form-control input-small" name="entityWebsite" ng-model="entityWebsite" placeholder="ex. www.MyCompany.com" type="url" />
+                <div class="form-messages-wrap">
+                    <div ng-messages="newEntitySubmissionForm.entityWebsite.$error" ng-show="newEntitySubmissionForm.entityWebsite.$dirty">
+                        <!--<span class="help-block">{{entitySubmitNameResponse.message}}</span><br>-->
+                        <label ng-message="pattern" class="text-danger">The URL you have entered is not valid. Please try again.</label>
+                    </div>
+                </div>                
             </div>
             <div class="form-group">
                 <label for="entityDescription">A Short Description of the Entity: (max 500 characters)</label>
-                <textarea class="form-control" name="entityDescription" ng-model="entityDescription" placeholder="This organization does ..." ng-maxlength="1000"></textarea>
-                <span class="help-block" ng-show="entitySubmitError.entityDescription">{{entitySubmitError.entityDescription}}</span>
+                <textarea class="form-control span6" name="entityDescription" ng-model="entityDescription" placeholder="This organization does ..." ng-maxlength="1000"></textarea>
+                <div class="form-messages-wrap">
+                    <div ng-messages="newEntitySubmissionForm.entityDescription.$error" ng-show="newEntitySubmissionForm.entityDescription.$dirty">
+                        <!--<span class="help-block">{{entitySubmitNameResponse.message}}</span><br>-->
+                        <label ng-message="required" class="text-danger">This field is required</label>
+                    </div>
+                </div>                
             </div>            
             <div class="form-group">
                 <label for="entityYearFounded">Year Founded:</label><br>
-                <input class="form-control" name="entityYearFounded" ng-model="entityYearFounded"  type="number" max="2016" placeholder="ex. 1956" />
-                <span class="help-block" ng-show="entitySubmitError.entityYearFounded">{{entitySubmitError.entityYearFounded}}</span>
+                <input class="form-control" name="entityYearFounded" ng-model="entityYearFounded" type="number" max="2016" placeholder="ex. 1956" ng-maxlength="4"/>
+                <div class="form-messages-wrap">
+                    <div ng-messages="newEntitySubmissionForm.entityYearFounded.$error" ng-show="newEntitySubmissionForm.entityYearFounded.$dirty">
+                        <!--<span class="help-block">{{entitySubmitNameResponse.message}}</span><br>-->
+                        <label ng-message="required" class="text-danger">This field...</label>
+                    </div>
+                </div>                
             </div>
             <div class="form-group">
                 <label for="entityCountryOrigin">Country of Origin:</label><br>
-                <country-select class="form-control" name="entityCountryOrigin" ng-model="entityCountryOrigin" cs-priorities="US"></country-select>
-                <span class="help-block" ng-show="entitySubmitError.entityCountryOrigin">{{entitySubmitError.entityCountryOrigin}}</span>
+                <country-select class="form-control span6" name="entityCountryOrigin" ng-model="entityCountryOrigin" cs-priorities="US"></country-select>
+                <div class="form-messages-wrap">
+                    <div ng-messages="newEntitySubmissionForm.entityCountryOrigin.$error" ng-show="newEntitySubmissionForm.entityCountryOrigin.$dirty">
+                        <!--<span class="help-block">{{entitySubmitNameResponse.message}}</span><br>-->
+                        <label ng-message="required" class="text-danger">This field...</label>
+                    </div>
+                </div>                
             </div>
             <div class="form-group">
                 <label for="entityIndustry">Industry:</label>
-                <input class="form-control" name="entityIndustry" ng-model="entityIndustry" placeholder="ex. Information Technology" />
-                <span class="help-block" ng-show="entitySubmitError.entityIndustry">{{entitySubmitError.entityIndustry}}</span>
+                <input class="form-control" name="entityIndustry" ng-model="entityIndustry" placeholder="ex. Information Technology" ng-maxlength="200"/>
+                <div class="form-messages-wrap">
+                    <div ng-messages="newEntitySubmissionForm.entityIndustry.$error" ng-show="newEntitySubmissionForm.entityIndustry.$dirty">
+                        <!--<span class="help-block">{{entitySubmitNameResponse.message}}</span><br>-->
+                        <label ng-message="required" class="text-danger">This field...</label>
+                    </div>
+                </div>                
             </div>            
         </div>
-        <button ng-if="entitySubmitNameResponse.code == 1" type="submit" class="btn btn-primary" ng-click="saveEntityInfo()">Save</button>
+        <button ng-if="entitySubmitNameResponse.code == 1" type="submit" class="btn btn-primary" ng-click="saveEntityInfo()" ng-disabled="newEntitySubmissionForm.$invalid">Save</button>
     </form>
 </div>
