@@ -27,7 +27,7 @@ return [
     */
 
     'debug' => env('APP_DEBUG', true),
-    'log_level' => env('APP_LOG_LEVEL', 'error'),
+    'log_level' => env('APP_LOG_LEVEL', 'debug'),
 
     /*
     |--------------------------------------------------------------------------
@@ -149,6 +149,7 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
+        Barryvdh\Cors\ServiceProvider::class,
 
         /*
          * Application Service Providers...

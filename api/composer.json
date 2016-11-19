@@ -1,6 +1,6 @@
 {
     "name": "laravel/laravel",
-    "description": "The Laravel Framework.",
+    "description": "larang (Angular with Laravel)",
     "keywords": ["framework", "laravel"],
     "license": "MIT",
     "type": "project",
@@ -15,7 +15,8 @@
         "mockery/mockery": "0.9.*",
         "phpunit/phpunit": "~4.0",
         "symfony/css-selector": "2.8.*|3.0.*",
-        "symfony/dom-crawler": "2.8.*|3.0.*"
+        "symfony/dom-crawler": "2.8.*|3.0.*",
+        "barryvdh/laravel-cors": "^0.8.2"
     },
     "autoload": {
         "classmap": [
