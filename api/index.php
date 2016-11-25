@@ -20,9 +20,11 @@
 */
 
 
-// REMOVE THIS LINE IN PRODUCTION//////////
-header("Access-Control-Allow-Origin: *");//
-//REMOVE THIS LINE IN PRODUCTION///////////
+// REMOVE THIS LINE IN PRODUCTION//////////////////////////////
+header("Access-Control-Allow-Origin: *");//////////////////////
+header('Access-Control-Request-Headers: Content-Type');////////
+header('Access-Control-Allow-Headers: Origin, Content-Type');//
+//REMOVE THIS LINE IN PRODUCTION///////////////////////////////
 
 require __DIR__.'/bootstrap/autoload.php';
 

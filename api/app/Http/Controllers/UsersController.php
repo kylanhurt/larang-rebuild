@@ -32,11 +32,14 @@ class UsersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
         //we will want to create a record and send back JSON object of user's details with success indicator
-        $password = $this->request->input('password');
-        $email = $this->request->input('email');
+        $password = $request->input('password');
+        $email = $request->input('email');
+        //return $request->getContent();
+        //echo 'email: ' . $email;
+        //echo 'password: ' . $password;
         $found = User::where('email',$email)->get();
         $num = count($found);
         if($num >= 1) {
@@ -46,6 +49,7 @@ class UsersController extends Controller
             $new_user = new User;
             $new_user->email = $email;
             $new_user->password = Hash::make($password);
+            //echo $new_user;
             $new_user->save();
             if(count(User::where('email',$email)->get() === 1)) {
                 $resp['code'] = 1;
@@ -53,7 +57,7 @@ class UsersController extends Controller
             }
         }
         
-        return $resp;
+        return response($resp, 200);
     }
 
     /**
