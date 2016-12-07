@@ -54,6 +54,8 @@ class UsersController extends Controller
             //echo $new_user;
             $new_user->save();
             if(count(User::where('email',$email)->get() === 1)) {
+                $auth = new AuthenticateController();
+                return $auth->authenticate($request);
                 $resp['code'] = 1;
                 $resp['message'] = "User successfully registered.";
             }
