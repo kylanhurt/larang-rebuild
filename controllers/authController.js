@@ -25,7 +25,7 @@ angular.module('dataGoMain')
                 password: $scope.password
             }
         }
-        console.log('crendentials:', credentials);
+        console.log('credentials:', credentials);
 
         $auth.login(credentials).then(function() {
             return $http.get('api/authenticate/user')

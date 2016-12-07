@@ -36,7 +36,9 @@ class UsersController extends Controller
     {
         //we will want to create a record and send back JSON object of user's details with success indicator
         $password = $request->input('password');
-        $email = $request->input('email');
+        
+        $email = ( $request->input('email')) ? $request->input('email') : $request->input('username') ;
+
         //return $request->getContent();
         //echo 'email: ' . $email;
         //echo 'password: ' . $password;
