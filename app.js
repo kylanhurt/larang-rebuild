@@ -85,19 +85,14 @@ function MainCtrl($scope, $rootScope, $state, $auth, dataGoAPI) {
         $scope.currentIndexes = {};
         dataGoAPI.apiReq('entity?criteria=' + encodeURI(criteria) + '&count=' + count + '&order=' + order, 'GET')
          .success(function (response) {
-                    if(response.code === 1) {
-                        console.log('getEntityindex success and response is: ' , response);
-			var target = "http://"; //for removal of 'http://' from string
-                        $scope.currentIndex = response;
-
-                    } else if(response.code === 0) {
-
-                        console.log('getEntityIndex fail');
-                    }
-                })
-                .error (function(response) {
-                    console.log(response)
-                })            
+                console.log('response object for getEntityIndex is: ', response);
+                console.log('getEntityindex success and response is: ' , response);
+			     var target = "http://"; //for removal of 'http://' from string
+                 $scope.currentIndex = response;
+            })
+            .error (function(response) {
+                console.log(response)
+            })            
     }    
 }
 
