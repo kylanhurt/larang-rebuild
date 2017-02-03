@@ -11,8 +11,9 @@ angular.module('dataGoMain')
             var data = {email: $scope.email, password: $scope.password}
             dataGoAPI.registerNewUser(data)
                 .success(function (response) {
-                    if(response.code === 1) {
+                    if(response.token) {
                         $rootScope.login($scope.email,$scope.password);
+
                     } else if(response.code === 0) {
                         $scope.registrationError.username = response.message;
                     }
